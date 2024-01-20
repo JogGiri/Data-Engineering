@@ -8,6 +8,7 @@ def oracle_conn_config(host,port,db,username,password):
     "fetchsize":"100000"}
   return (jdbcUrl,connectionProperties)
 
+
 def sqlserver_conn_config(host,port,db,username,password):
     jdbc_url = "jdbc:sqlserver://{0}:{1};databaseName={2};user={3};password={4}".format(host, port, db, username, password)
     connection_properties = {
@@ -18,7 +19,11 @@ def sqlserver_conn_config(host,port,db,username,password):
 
 def db2_conn_config(host, username, password):
     url = "jdbc:as400://"+host
-    prop = {"user": username, "password": password, "driver": "com.ibm.as400.access.AS400JDBCDriver", "sslConnection": "true"}
+    prop = {
+        "user": username, 
+        "password": password, 
+        "driver": "com.ibm.as400.access.AS400JDBCDriver", 
+        "sslConnection": "true"}
     return (url, prop)
 
 def progress_conn_config(host,port,db,username,password):
@@ -30,16 +35,21 @@ def progress_conn_config(host,port,db,username,password):
       "fetchsize":"100000"}
     return (jdbcUrl,connectionProperties)
 
-#Connection to PR1
-def oracle_conn_config(host,port,db,username,password):
-  jdbcUrl = "jdbc:oracle:thin:@//{0}:{1}/{2}".format(host, port, db)
-  connectionProperties = {
-    "user" : username,
-    "password" : password,
-    "driver" : "oracle.jdbc.driver.OracleDriver",
-    "oracle.jdbc.timezoneAsRegion" : "false",
-    "fetchsize":"100000"}
-  return (jdbcUrl,connectionProperties)
+
+  
+### Snowflake Connections
+  def snowflake_conn_config(host,username,password,schema,database,account):  
+      options = {
+        "sfUrl":host,
+        "sfUser":username,
+          "sfPassword":password,
+          "sfWarehouse":"",
+          "sfDatabase":database,
+          "sfSchema":schema,
+          "sfRole" : "",
+          "sfAccount":""
+      }
+      return options
 
 
   ###Postgres connection
