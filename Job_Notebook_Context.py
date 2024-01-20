@@ -1,4 +1,5 @@
 # From this code we can get job context
+workspace_url = spark.conf.get("spark.databricks.workspaceUrl")
 
 Context = dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson()
 
